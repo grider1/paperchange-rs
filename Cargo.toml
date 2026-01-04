@@ -5,3 +5,5 @@ edition = "2024"
 
 [dependencies]
 rand = "0.9.0"
+kmeans = "2.0.1"
+image = "0.25.9"
