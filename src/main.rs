@@ -8,6 +8,8 @@ use std::time::Duration;
 use rand::Rng;
 use std::ffi::OsStr;
 
+pub mod theme_changer;
+
 fn main() {
     let home = env::var("HOME").expect("Could not find $HOME");
     let path_to_wallpapers = format!("{}/.config/hypr/wallpapers/", home);
@@ -42,6 +44,7 @@ fn main() {
             if character == 'r' {
                 let random_index = rand::rng().random_range(0..wallpaper_list.len());
                 let selected_path = &wallpaper_list[random_index];
+                theme_changer::change_theme(selected_path);
                 update_config(&selected_path);
                 restart_hyprpaper();
                 return;
@@ -54,6 +57,7 @@ fn main() {
         Ok(num) => {
             if num < wallpaper_list.len() {
                 let selected_path = &wallpaper_list[num];
+                theme_changer::change_theme(selected_path);
                 update_config(&selected_path);
                 restart_hyprpaper();
             }
