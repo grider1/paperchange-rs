@@ -78,15 +78,8 @@ fn update_config(wallpaper_path: &PathBuf) {
     let new_lines: Vec<String> = current_content.lines().map(|line| {
         let trimmed = line.trim();
 
-        if trimmed.starts_with("preload") {
-            format!("preload = {}", new_wallpaper_str)
-        } 
-        else if trimmed.starts_with("wallpaper") {
-            if let Some((monitor_part, _)) = line.split_once(',') {
-                format!("{},{}", monitor_part, new_wallpaper_str)
-            } else {
-                format!("wallpaper = ,{}", new_wallpaper_str)
-            }
+        if trimmed.starts_with("path") {
+            format!("path = {}", new_wallpaper_str)
         } 
         else {
             line.to_string()
